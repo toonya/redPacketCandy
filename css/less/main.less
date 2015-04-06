@@ -280,9 +280,7 @@ nav {
 		text-align: center;
 		font-weight: bold;
 	}
-}
 
-.redpacket {
 	.totle {
 		padding-left: 20px;
 		font-size: 18px;
@@ -290,6 +288,22 @@ nav {
 		span {
 			font-weight: bold;
 		}
+	}
+
+	.list {
+		max-height: 250px;
+		overflow: auto;
+
+		.target {
+			position: relative;
+			top: 0;
+		}
+	}
+}
+
+.redpacket {
+	.list {
+		max-height: 190px;
 	}
 }
 
@@ -383,11 +397,4 @@ nav {
 			transform: rotate(-45deg);
 		}
 	}
-}
-
-.content {
-	position: relative;
-	z-index: 10;
-	max-height: 200px;
-	overflow: auto;
 }

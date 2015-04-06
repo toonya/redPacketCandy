@@ -601,12 +601,27 @@ nav .nav-justified li a:hover {
   text-align: center;
   font-weight: bold;
 }
+.rule .totle,
 .redpacket .totle {
   padding-left: 20px;
   font-size: 18px;
 }
+.rule .totle span,
 .redpacket .totle span {
   font-weight: bold;
+}
+.rule .list,
+.redpacket .list {
+  max-height: 250px;
+  overflow: auto;
+}
+.rule .list .target,
+.redpacket .list .target {
+  position: relative;
+  top: 0;
+}
+.redpacket .list {
+  max-height: 190px;
 }
 .redpacket-result {
   position: absolute;
@@ -691,10 +706,4 @@ nav .nav-justified li a:hover {
   -webkit-transform: rotate(-45deg);
       -ms-transform: rotate(-45deg);
           transform: rotate(-45deg);
-}
-.content {
-  position: relative;
-  z-index: 10;
-  max-height: 200px;
-  overflow: auto;
 }
