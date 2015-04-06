@@ -1,0 +1,18 @@
+mixin selection(id,...items)
+	.selection-box.hidden(id=id)
+		.inner
+			.title 请点击一个选项
+			ul
+				each item in items
+					li= item
+
+
+mixin client(state, stateName)
+	.item
+		.name 
+			span 余漫斯
+		.loupan 万科翡翠城
+		.phone 
+			span 18577345443
+		.state(class='state'+state)
+			span= stateName

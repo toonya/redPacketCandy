@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>摇一摇，领红包</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/main.css">
+        <script src="js/vendor/jquery-1.11.1.min.js"></script>
+        <script src="js/shake.js"></script>
+    </head>
+    <body>
+        <div class="page main animated game">
+            <!-- 获奖名单滚动显示-->
+            <div class="user-list">
+                <ul>
+                    <li>张11拆开了8.88元的红包</li>
+                    <li>张22拆开了8.88元的红包</li>
+                    <li>张33拆开了8.88元的红包</li>
+                    <li>张44拆开了8.88元的红包</li>
+                    <li>张**拆开了8.88元的红包</li>
+                    <li>张**拆开了8.88元的红包</li>
+                    <li>张**拆开了8.88元的红包</li>
+                    <li>张**拆开了8.88元的红包</li>
+                </ul>
+            </div>
+            <div class="cloud"></div>
+            <div class="shake">
+                <div class="inner"></div>
+            </div>
+            <div class="shake-result">
+                <a class="candy">
+                    <div class="inner">打开糖果收红包</div>
+                </a>
+            </div>
+            <div class="notice">
+                <div class="inner">
+                    <div class="no-opportunity">
+                        <p>您的次数已经用完。</p>
+                        <p>点击右上角三个点，</p>
+                        <p>分享给朋友或分享到朋友圈，</p>
+                        <p>可以获得更多机会哦！</p>
+                    </div>
+                    <div class="share">
+                        <p>点击右上角三个点，</p>
+                        <p>分享给朋友或分享到朋友圈，</p>
+                        <p>可以获得更多机会哦！</p>
+                    </div>
+                </div>
+            </div>
+            <div class="redpacket-result">
+                <div class="inner">
+                    <a class="close"></a>
+                    <h2>这里是一句吉祥语</h2>
+                    <div class="p-1">溪贵妃打赏您</div>
+                    <div class="p-2">
+                        <strong>9.99</strong>
+                        <small>元</small>
+                    </div>
+                    <div class="note">已存入微信钱包</div>
+                </div>
+            </div>
+            <nav>
+                <ul class="nav nav-justified">
+                    <li><a href="redpacket.html">红包</a></li>
+                    <li><a href="#" class="share">分享</a></li>
+                    <li><a href="rule.html">规则</a></li>
+                </ul>
+            </nav>
+            <script>
+            $(function()
+            {
+                $('.game').trigger('shakeOn')
+                // 设置内容 红包内容
+                // $('.game').trigger('setRedpacket', { title: '这里是一句吉祥语', money: '9.99' });
+                // 没有红包机会
+                // $('.game').trigger('openNoOpportunity');
+                // 摇一摇之后 ajax 判断~
+                $(window).on('shake', function()
+                {
+                    // 1. ajax
+                    // 2. if 有红包
+                    $('.game').trigger('setRedpacket',
+                    {
+                        title: '天长地更久',
+                        money: '9.99'
+                    });
+                    $('.game').trigger('openCandy');
+                    // 2. 没有红包机会
+                    // $('.game').trigger('openNoOpportunity');
+                })
+            })
+            </script>
+        </div>
+        <script src="js/main.js"></script>
+        <script src="http://192.168.31.193:1337/livereload.js"></script>
+    </body>
+</html>

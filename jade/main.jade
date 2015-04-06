@@ -1,0 +1,82 @@
+extends inc/base
+
+block title
+	title 摇一摇，领红包
+
+block page
+	.page.main.animated.game
+		// 获奖名单滚动显示
+		.user-list
+			ul
+				li 张11拆开了8.88元的红包
+				li 张22拆开了8.88元的红包
+				li 张33拆开了8.88元的红包
+				li 张44拆开了8.88元的红包
+				li 张**拆开了8.88元的红包
+				li 张**拆开了8.88元的红包
+				li 张**拆开了8.88元的红包
+				li 张**拆开了8.88元的红包
+
+		.cloud
+		.shake
+			.inner
+
+		.shake-result
+			a.candy
+				.inner 打开糖果收红包
+
+		.notice
+			.inner
+				.no-opportunity
+					p 您的次数已经用完。
+					p 点击右上角三个点，
+					p 分享给朋友或分享到朋友圈，
+					p 可以获得更多机会哦！
+				.share
+					p 点击右上角三个点，
+					p 分享给朋友或分享到朋友圈，
+					p 可以获得更多机会哦！
+		.redpacket-result
+			.inner
+				a.close
+				h2 这里是一句吉祥语
+				.p-1 溪贵妃打赏您
+				.p-2 
+					strong 9.99
+					small 元
+				.note 已存入微信钱包
+
+
+
+		nav
+			ul.nav.nav-justified
+				li
+					a(href="redpacket.html") 红包
+				li
+					a.share(href="#") 分享
+				li
+					a(href="rule.html") 规则
+
+
+		script.
+			$(function(){
+				$('.game').trigger('shakeOn')
+
+				// 设置内容 红包内容
+				// $('.game').trigger('setRedpacket', { title: '这里是一句吉祥语', money: '9.99' });
+
+				// 没有红包机会
+				// $('.game').trigger('openNoOpportunity');
+				
+				// 摇一摇之后 ajax 判断~
+				$(window).on('shake', function(){
+					// 1. ajax
+
+					// 2. if 有红包
+					$('.game').trigger('setRedpacket', { title: '天长地更久', money: '9.99' });
+					$('.game').trigger('openCandy');
+
+					// 2. 没有红包机会
+					// $('.game').trigger('openNoOpportunity');
+				})
+			})
