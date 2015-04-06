@@ -81,15 +81,47 @@
                 $(window).on('shake', function()
                 {
                     // 1. ajax
-                    // 2. if 有红包
-                    $('.game').trigger('setRedpacket',
-                    {
-                        title: '天长地更久',
-                        money: '9.99'
-                    });
-                    $('.game').trigger('openCandy');
-                    // 2. 没有红包机会
-                    // $('.game').trigger('openNoOpportunity');
+                    $.ajax(
+                        {
+                            type: "POST",
+                            url: "some.php",
+                            data:
+                            {},
+                            dataType: 'json',
+                        })
+                        .done(function(msg)
+                        {
+                            if (!msg)
+                            {
+                                // alert('请重试');
+                                return;
+                            }
+                            if (msg.opportunity)
+                            {
+                                // 有红包
+                                // var msg = {
+                                //	opportunity: true,
+                                //	title: '',
+                                //	money: ''
+                                // }
+                                $('.game').trigger('setRedpacket',
+                                {
+                                    title: msg.title,
+                                    money: msg.money
+                                });
+                                $('.game').trigger('openCandy');
+                            }
+                            else
+                            {
+                                // 2. 没有红包机会
+                                // msg.opportunity = false
+                                $('.game').trigger('openNoOpportunity');
+                            }
+                        })
+                        .fail(function()
+                        {
+                            alert('网络错误，请重试');
+                        })
                 })
             })
             </script>

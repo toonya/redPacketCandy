@@ -93,17 +93,9 @@
 
 		h = 0 - $('.touchmove .target').height() + $('.touchmove').height();
 
-		console.log(h);
-
 		$(document).on('touchmove', 'body', function(e){
 			e.preventDefault();
 
-			// if ( ( $(e.target).is('.touchmove') || $(e.target).closest('.touchmove').size() > 0 ) ) {
-			// 	// curX = e.targetTouches[0].pageX - startX;
-			// 	console.log(e);
-			// 	// e.targetTouches[0].target.style.webkitTransform =
-			// 	//     'translateY(' + curX + 'px )';
-			// }
 		})
 		.on('touchstart', '.touchmove', function(e){
 			startY = e.originalEvent.pageY;
@@ -122,8 +114,6 @@
 				if (dis > 0) dis = 0;
 				if (dis < h ) dis = h;
 
-				console.log( dis );
-
 				$('.touchmove .target').css('top', dis);
 			}
 		})
@@ -131,15 +121,5 @@
 
 	touch_scroll();
 	
-
-	// $(document).on('touchmove', 'body', function(e){
-
-	// 	if ( ! ( $(e.target).is('.touchmove') || $(e.target).closest('.touchmove').size() > 0 ) )
-	// 		e.preventDefault();
-
-	// 	else 
-	// 		e.stopPropagation();
-	// 		e.stopImmediatePropagation();
-	// })
 	
 })(jQuery)
