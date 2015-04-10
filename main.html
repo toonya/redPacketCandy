@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="css/main.css">
         <script src="js/vendor/jquery-1.11.1.min.js"></script>
         <script src="js/shake.js"></script>
+        <script src="js/player.js"></script>
     </head>
     <body>
         <div class="page main animated game">
@@ -29,13 +30,19 @@
             <div class="cloud"></div>
             <div class="shake">
                 <div class="inner"></div>
+                <div class="audio">
+                    <div id="musicWrap" class="music_wrap f-hide">
+                        <span class="text move hide">打开</span>
+                        <i id="audioBtn" data-src="audio/kacha.mp3" class="btn_music on"></i>
+                    </div>
+                </div>
             </div>
             <div class="shake-result">
                 <a class="candy">
                     <div class="inner">打开糖果收红包</div>
                 </a>
             </div>
-            <div class="notice">
+            <div class="notice begin">
                 <div class="inner">
                     <div class="no-opportunity">
                         <p>您的次数已经用完。</p>
@@ -47,6 +54,12 @@
                         <p>点击右上角三个点，</p>
                         <p>分享给朋友或分享到朋友圈，</p>
                         <p>可以获得更多机会哦！</p>
+                    </div>
+                    <div class="begin">
+                        <p>分享增加要红包的次数哦！</p>
+                        <p class="text-center m-t-md">
+                            <div class="btn btn-default">知道啦</div>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -77,10 +90,18 @@
                 // $('.game').trigger('setRedpacket', { title: '这里是一句吉祥语', money: '9.99' });
                 // 没有红包机会
                 // $('.game').trigger('openNoOpportunity');
+                audioPlayer = new Player($('#audioBtn'));
+                // 解决ios safari 不自动播放的问题
+                $(document).one('touchstart', function(e)
+                {
+                    audioPlayer._audio.play();
+                    audioPlayer._audio.pause();
+                })
                 // 摇一摇之后 ajax 判断~
                 $(window).on('shake', function()
                 {
                     // 1. ajax
+                    audioPlayer._audio.play();
                     $.ajax(
                         {
                             type: "POST",
@@ -118,10 +139,9 @@
                                 $('.game').trigger('openNoOpportunity');
                             }
                         })
-                        .fail(function()
-                        {
-                            alert('网络错误，请重试');
-                        })
+                        //- .fail(function(){
+                        //- 	alert('网络错误，请重试');
+                        //- })
                 })
             })
             </script>

@@ -20,12 +20,17 @@ block page
 		.cloud
 		.shake
 			.inner
+			.audio.
+				<div id="musicWrap" class="music_wrap f-hide">
+					<span class="text move hide">打开</span>
+				    <i id="audioBtn" data-src="audio/kacha.mp3" class="btn_music on"></i>
+				</div>
 
 		.shake-result
 			a.candy
 				.inner 打开糖果收红包
 
-		.notice
+		.notice.begin
 			.inner
 				.no-opportunity
 					p 您的次数已经用完。
@@ -36,6 +41,10 @@ block page
 					p 点击右上角三个点，
 					p 分享给朋友或分享到朋友圈，
 					p 可以获得更多机会哦！
+				.begin 
+					p 分享增加要红包的次数哦！
+					p.text-center.m-t-md
+						.btn.btn-default 知道啦
 		.redpacket-result
 			.inner
 				a.close
@@ -67,10 +76,19 @@ block page
 
 				// 没有红包机会
 				// $('.game').trigger('openNoOpportunity');
+
+				audioPlayer = new Player($('#audioBtn'));
+						// 解决ios safari 不自动播放的问题
+			    $(document).one('touchstart', function(e){
+					audioPlayer._audio.play();
+					audioPlayer._audio.pause();
+			    })
 				
 				// 摇一摇之后 ajax 判断~
 				$(window).on('shake', function(){
 					// 1. ajax
+					
+					audioPlayer._audio.play();
 
 					$.ajax({
 						type: "POST",
@@ -100,8 +118,8 @@ block page
 							$('.game').trigger('openNoOpportunity');
 						}
 					})
-					.fail(function(){
-						alert('网络错误，请重试');
-					})
+					//- .fail(function(){
+					//- 	alert('网络错误，请重试');
+					//- })
 				})
 			})

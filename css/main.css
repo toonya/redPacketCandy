@@ -526,7 +526,7 @@ nav .nav-justified li a:hover {
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 60%;
+  width: 75%;
   text-align: center;
   color: #fff;
 }
@@ -583,6 +583,9 @@ nav .nav-justified li a:hover {
   display: block;
 }
 .notice.open-share .share {
+  display: block;
+}
+.notice.begin {
   display: block;
 }
 .notice.open-no-opportunity {

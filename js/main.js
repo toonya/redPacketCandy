@@ -4,10 +4,11 @@
 	// ! shake
 	// ----------------------------------------
 	var myShakeEvent = new Shake({
-	    threshold: 15, // optional shake strength threshold
+	    threshold: 9, // optional shake strength threshold
 	    timeout: 1000 // optional, determines the frequency of event generation
 	});
 
+	console.log(myShakeEvent);
 	// myShakeEvent.start();
 
 	// myShakeEvent.stop();
@@ -58,6 +59,9 @@
 	.on('closeShare', function(e){
 		$('.notice').removeClass('open-share');
 	})
+	.on('begin', function(e){
+		$('.notice').removeClass('begin').find('.begin').remove();
+	})
 	// opportunity
 	.on('openNoOpportunity', function(e){
 		$('.notice').addClass('open-no-opportunity');
@@ -68,6 +72,9 @@
 	// close notice
 	.on('touchstart', '.notice', function(e){
 		$('.game').trigger('closeShare').trigger('closeNoOpportunity');
+	})
+	.one('touchstart', '.notice', function(e){
+		$('.game').trigger('begin');
 	})
 	// close redpacket
 	.on('touchstart', 'a.close', function(e){
@@ -120,6 +127,5 @@
 	}
 
 	touch_scroll();
-	
-	
+
 })(jQuery)
