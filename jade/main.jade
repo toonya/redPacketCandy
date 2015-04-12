@@ -69,7 +69,14 @@ block page
 
 		script.
 			$(function(){
-				$('.game').trigger('shakeOn')
+				$('.game').one('touchstart', '.notice', function(e){
+					$('.game').trigger('shakeOn');
+					$('.game').trigger('begin').on('touchstart', '.notice', function(e){
+						$('.game').trigger('shakeOn');
+					}).on('closeRedpacket', function(e){
+						$('.game').trigger('shakeOn');
+					});
+				});
 
 				// 设置内容 红包内容
 				// $('.game').trigger('setRedpacket', { title: '这里是一句吉祥语', money: '9.99' });
@@ -118,8 +125,9 @@ block page
 							$('.game').trigger('openNoOpportunity');
 						}
 					})
-					//- .fail(function(){
-					//- 	alert('网络错误，请重试');
-					//- })
+					.fail(function(){
+						alert('网络错误，请重试');
+						$('.game').trigger('shakeOn');
+					})
 				})
 			})

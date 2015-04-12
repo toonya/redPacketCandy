@@ -8,7 +8,6 @@
 	    timeout: 1000 // optional, determines the frequency of event generation
 	});
 
-	console.log(myShakeEvent);
 	// myShakeEvent.start();
 
 	// myShakeEvent.stop();
@@ -39,14 +38,27 @@
 		
 		var root = $('.redpacket-result');
 		var _default = {
-			title: '这里是一句吉祥语',
-			money: '9.99'
+			title: '可惜，可惜',
+			money: '0.00'
 		}
 
 		var _data = $.extend( _default, data )
 
+
 		root.find('h2').text(_data.title);
-		root.find('strong').text(_data.money);
+
+		if ( _data.money.trim() == '0.00' ) {
+			root.find('.p-2').hide();
+			root.find('.p-1').hide();
+			root.find('.note').hide();
+			root.find('strong').text(_data.money);
+		}
+		else {
+			root.find('strong').text(_data.money);
+			root.find('.p-2').show();
+			root.find('.p-1').show();
+			root.find('.note').show();
+		}
 
 	})
 	.on('closeRedpacket', function(e){
@@ -72,9 +84,6 @@
 	// close notice
 	.on('touchstart', '.notice', function(e){
 		$('.game').trigger('closeShare').trigger('closeNoOpportunity');
-	})
-	.one('touchstart', '.notice', function(e){
-		$('.game').trigger('begin');
 	})
 	// close redpacket
 	.on('touchstart', 'a.close', function(e){
